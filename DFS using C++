@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+
+void Dfs_Traversal(int);
+void Read_Input();
+int arr[10][10],visited[10], vertex, source; 
+
+int main()
+{
+   Read_Input();
+   
+   for(int i = 0 ; i < vertex ; i++ )          //initially visited for all vertices is zero
+        visited[i]=0;
+   
+   cout << "After DFS Travarsal of the Graph: ";
+   Dfs_Traversal(source);
+    
+    return 0;
+}
+ 
+void Dfs_Traversal(int i)
+{
+    int j;
+	cout << i << " ";
+    visited[i] = 1;         //identifying black vertex by 1 
+
+	for( j = 0 ;j < vertex ; j++)
+    { 
+        if(visited[j] != 1 && arr[i][j] == 1)    // If vertex not visited and has an edge
+            Dfs_Traversal(j);
+    }
+}
+
+void Read_Input ()
+{
+    int i,j;
+    cout << "Enter number of vertices: ";
+    cin >> vertex;
+ 
+	cout << "Enter the adjecency matrix of the graph: " << endl;
+   
+	for( i = 0 ; i < vertex ; i++ )
+    {
+        for( j = 0 ; j < vertex ; j++ )
+		{
+		    cin >> arr[i][j];
+		}
+    }
+    
+    cout << "Enter the starting vertex: ";
+    cin >> source;
+    
+}
+
+
+/*
+0 1 0 0
+0 0 1 0 
+1 0 0 1
+0 0 0 1
+starting vertex: 1
+result: 1 2 0 3
+*/
